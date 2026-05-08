@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>NŌMŌ × TOPCAR — Коллаборация</title>
+
+<script>
+  window.NOMO_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxDDZUVeaSk9IADoU74AsuVZUb0IRtYIDqlJhBq8vlF1c9DAKjRATtw4yXLaOPfHZf9/exec";
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F5EFE0;
+    --bg-soft: #FAF5E8;
+    --gold: #8E6F38;
+    --gold-deep: #6B5028;
+    --text: #3A2E1C;
+    --text-soft: rgba(58, 46, 28, 0.65);
+    --line: rgba(110, 85, 40, 0.25);
+    --btn: #1F1812;
+    --error: #b34a3d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', -apple-system, sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(142, 111, 56, 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(142, 111, 56, 0.08) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0 0.1 0 0 0 0.4 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.06'/></svg>");
+    opacity: 0.6;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 40px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .brand-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 38px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-left: 0.4em;
+  }
+
+  .brand-tag {
+    margin-top: 4px;
+    font-size: 10px;
+    letter-spacing: 0.42em;
+    color: var(--text-soft);
+    text-transform: uppercase;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 36px 0 28px;
+    animation: fadeUp 0.9s 0.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .ornament .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+    max-width: 80px;
+  }
+  .ornament .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(142, 111, 56, 0.4);
+  }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1.05;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 18px;
+    animation: fadeUp 0.9s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-soft);
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+    padding: 0 8px;
+    animation: fadeUp 0.9s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .form { animation: fadeUp 0.9s 0.25s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+  .field {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .field label .optional {
+    color: var(--text-soft);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: none;
+    font-size: 10px;
+  }
+
+  .field input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 400;
+    padding: 8px 0 12px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    border-radius: 0;
+  }
+
+  .field input::placeholder {
+    color: rgba(58, 46, 28, 0.35);
+    font-weight: 400;
+  }
+
+  .field input:focus {
+    border-bottom-color: var(--gold);
+  }
+
+  .hint {
+    font-size: 11px;
+    color: var(--text-soft);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .submit {
+    width: 100%;
+    background: var(--btn);
+    color: var(--bg);
+    border: 1px solid var(--btn);
+    padding: 18px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit:active { transform: scale(0.98); }
+  .submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .submit.loading .submit-text { opacity: 0; }
+  .submit.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    margin: -9px 0 0 -9px;
+    border: 2px solid var(--bg);
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .footer-note {
+    margin-top: auto;
+    padding-top: 32px;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(58, 46, 28, 0.45);
+    text-transform: uppercase;
+  }
+
+  .error-msg {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border: 1px solid rgba(179, 74, 61, 0.4);
+    background: rgba(179, 74, 61, 0.06);
+    color: var(--error);
+    font-size: 13px;
+    text-align: center;
+    display: none;
+  }
+  .error-msg.show { display: block; animation: fadeUp 0.4s ease both; }
+
+  .success {
+    display: none;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 32px 24px 40px;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .success.show { display: flex; animation: fadeUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+  .success-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.42em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s 0.2s both;
+  }
+
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s 0.35s both;
+  }
+
+  .code-frame {
+    border: 1px solid var(--line);
+    padding: 38px 24px;
+    margin-bottom: 36px;
+    position: relative;
+    background:
+      linear-gradient(135deg, rgba(142, 111, 56, 0.05) 0%, transparent 60%),
+      var(--bg-soft);
+    animation: fadeUp 0.7s 0.5s both;
+  }
+  .code-frame::before, .code-frame::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--gold);
+  }
+  .code-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .code-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .code-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .code-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 42px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+
+  .success-info {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    letter-spacing: 0.02em;
+    padding: 0 8px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s 0.65s both;
+  }
+
+  .success-foot {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gold);
+    animation: fadeUp 0.6s 0.8s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text);
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg) inset;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: var(--text);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="formScreen">
+  <header class="brand">
+    <div class="brand-logo">NŌMŌ</div>
+    <div class="brand-tag">Hookah · Restaurant · Lounge</div>
+  </header>
+
+  <h1 class="title">Коллаборация<br><em>NOMO × TOPCAR</em></h1>
+
+  <p class="subtitle">
+    Заполните форму, чтобы стать участником.<br>
+    Мы свяжемся с победителем лично.
+  </p>
+
+  <div class="ornament">
+    <span class="line"></span>
+    <span class="dot"></span>
+    <span class="line"></span>
+  </div>
+
+  <form class="form" id="giveawayForm" novalidate>
+    <div class="field">
+      <label for="name">Имя</label>
+      <input type="text" id="name" name="name" placeholder="Как к вам обращаться" autocomplete="given-name" required>
+    </div>
+
+    <div class="field">
+      <label for="phone">Телефон</label>
+      <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
+    </div>
+
+    <div class="field">
+      <label for="instagram">Instagram <span class="optional">— по желанию</span></label>
+      <input type="text" id="instagram" name="instagram" placeholder="@your_nickname" autocomplete="off">
+      <div class="hint">Можно оставить пустым</div>
+    </div>
+
+    <button type="submit" class="submit" id="submitBtn">
+      <span class="submit-text">Участвовать</span>
+    </button>
+
+    <div class="error-msg" id="errorMsg"></div>
+  </form>
+
+  <div class="footer-note">Земляной Вал, 9А · Москва</div>
+</div>
+
+<div class="success" id="successScreen">
+  <div class="success-eyebrow">Заявка принята</div>
+  <h2 class="success-title">Вы в розыгрыше</h2>
+
+  <div class="code-frame">
+    <div class="code-label">Ваш номер участника</div>
+    <div class="code-value" id="codeValue">NOMO-0000</div>
+  </div>
+
+  <p class="success-info">
+    Сохраните этот номер — он понадобится при объявлении результатов.<br>
+    Победителя свяжемся лично по указанному телефону.
+  </p>
+
+  <div class="success-foot">С любовью, NOMO</div>
+</div>
+
+<script>
+(function() {
+  const form = document.getElementById('giveawayForm');
+  const formScreen = document.getElementById('formScreen');
+  const successScreen = document.getElementById('successScreen');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorMsg = document.getElementById('errorMsg');
+  const codeValue = document.getElementById('codeValue');
+
+  const phoneInput = document.getElementById('phone');
+  phoneInput.addEventListener('input', function(e) {
+    let v = e.target.value.replace(/[^\d+]/g, '');
+    if (v && !v.startsWith('+')) {
+      if (v.startsWith('8')) v = '+7' + v.slice(1);
+      else if (v.startsWith('7')) v = '+' + v;
+      else v = '+' + v;
+    }
+    e.target.value = v;
+  });
+
+  const igInput = document.getElementById('instagram');
+  igInput.addEventListener('blur', function(e) {
+    const v = e.target.value.trim();
+    if (v && !v.startsWith('@')) {
+      e.target.value = '@' + v.replace(/^@+/, '');
+    }
+  });
+
+  function showError(text) {
+    errorMsg.textContent = text;
+    errorMsg.classList.add('show');
+  }
+
+  function hideError() {
+    errorMsg.classList.remove('show');
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    hideError();
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const instagram = document.getElementById('instagram').value.trim();
+
+    if (!name || name.length < 2) {
+      showError('Пожалуйста, укажите ваше имя');
+      return;
+    }
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      showError('Проверьте номер телефона');
+      return;
+    }
+
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(window.NOMO_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ name: name, phone: phone, instagram: instagram }),
+        redirect: 'follow'
+      });
+
+      const data = await response.json();
+
+      if (data && data.success && data.code) {
+        codeValue.textContent = data.code;
+        formScreen.style.display = 'none';
+        successScreen.classList.add('show');
+        window.scrollTo(0, 0);
+      } else {
+        throw new Error(data && data.error ? data.error : 'Ошибка сервера');
+      }
+    } catch (err) {
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      showError('Не удалось отправить. Попробуйте ещё раз.');
+      console.error(err);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
